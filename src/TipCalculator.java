@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class TipCalculator {
     public static void main(String[] arg) {
@@ -9,6 +10,7 @@ public class TipCalculator {
         System.out.print("Enter the tip percentage (0-100): ");
         int tipPercentage = scan.nextInt();
         double totalCost = 0;
+        ArrayList itemsList = new ArrayList();
         while (true) {
             System.out.print("Enter the item cost (-1 to end): ");
             double itemCost = scan.nextDouble();
@@ -16,6 +18,8 @@ public class TipCalculator {
                 break;
             } else {
                 totalCost += itemCost;
+                System.out.println("Enter the item: ");
+                itemsList.add(scan.nextLine());
             }
         }
         double tip = (int) (totalCost * (tipPercentage/100.0) * 100 + 0.5) / 100.0;
@@ -30,5 +34,9 @@ public class TipCalculator {
         System.out.println("Tip per person: $" + perPersonTip);
         System.out.println("Total cost per person: " + (perPersonCost + perPersonTip));
         System.out.println("--------------------------------------");
+        System.out.println("Items ordered:");
+        for (int i = 1; i <= itemsList.size(); i++) {
+            System.out.println(itemsList.get(i));
+        }
     }
 }
